@@ -26,7 +26,7 @@ This repository explains how a decoder-only transformer work. This explanation i
 
 
 
-# **1. Overview of Decoder-Only Transformer Architecture**
+## 1. Overview of Decoder-Only Transformer Architecture
 
  <img src="./images/decoder.PNG" alt="decoders" title="decoders" size="30%"/>
 
@@ -99,7 +99,7 @@ So,What are the practical steps for training one of these decoders and readying 
 
 
 
- **Training Methodology and Objectives**
+##2. Training Methodology and Objectives
 
 <img src="./images/transformers.PNG" alt="whydecoders" title="decoders" size="30%"/>
  
@@ -123,7 +123,7 @@ This delineates the operational essence of the decoder-only architecture, elucid
 
  
  
- 3. **Distinctive Features of Decoder-Only Architecture**
+## 3. Distinctive Features of Decoder-Only Architecture
 
  <img src="./images/encoder-decoder.PNG" alt="whydecoders" title="decoders" size="30%"/>
 
