@@ -73,6 +73,7 @@ This reconstruction or loss function typically requires four parameters:
 
 Consequently, the last token of the prompt is aligned to predict the initial token of the response, maintaining the sequential integrity of token prediction. It's plausible that the negative log-likelihood function might include the 'mask prefix' parameter set to false, thereby making both the prefix tokens and the response tokens integral to the model's training targets. The decision between these approaches might not have a clear theoretical superiority, but empirical evidence may favour one over the other.
 
+
 A subtle variation to this framework could involve incorporating a special 'beginning of sentence' token at the start and also making the very first token of the prompt, $x_1$, a subject of prediction. However, it's not entirely clear whether such a 'beginning of sentence' token is universally employed in GPT or similar transformer architectures. These are minor, nuanced adjustments, yet the core principles we've discussed hold consistently true.
 
 This delineates the operational essence of the decoder-only architecture, elucidating the intricate interplay of inputs, sequence lengths, and the strategic masking of tokens in refining the model's predictive prowess.
