@@ -45,7 +45,7 @@ Hence, the training objective is established. Provided with a sequence of input 
  
 This module proves particularly effective in scenarios like question-answering or generating responses to prompts. During these tasks, the operation of the Decoder at runtime unfolds as follows: We commence by supplying a subset of input tokens up to a certain juncture; specifically, the initial $t$ tokens are fed into the system. Corresponding to these input slots, the Decoder calculates the probability vectors as previously outlined. However, our interest doesn't lie in these probabilities, except for the probability associated with the final token in this subset, $x_t$.
 
-<img src="./images/transformers.PNG" alt="whydecoders" title="decoders" size="30%"/>
+<img src="./images/transformers.PNG" alt="transformers" title="transformers" size="30%"/>
 
 Our primary focus is on predicting the initial token of the response, denoted as $y_1$. Upon predicting $y_1$, it's then used as the subsequent input token, following $x_t$, the final token of the input sequence. This process aims to predict $y_2$, the second token of the response. We continue this pattern, iteratively feeding each predicted token, $y_2$, $y_3$, and so on, back into the system as the new input. This method ensures that only the first $xt$ tokens are supplied as the prompt, and it's anticipated that the Decoder will sequentially generate the remaining tokens that constitute the response. 
 
@@ -56,7 +56,9 @@ Such is the nature of the Decoder's function during runtime or inference, system
 **What are the practical steps for training one of these decoders and readying it for the training phase? How do we actually employ the negative log-likelihood in this context?**
  
 The process is straightforward. Consider an example where we're presented with an input sentence, say, "How are you?" and the corresponding response should be "I'm well." Here, "How are you?" represents the input tokens, and "I'm well" embodies the predicted tokens.
-<img src="./images/decoder-architecture.PNG" alt="decoder architecture" title="decoders" size="30%"/>
+
+<img src="./images/decoder-architecture.PNG" alt="decoderarchitecture" title="decoders" size="30%"/>
+
 At this juncture, the crux of negative log-likelihood is to predict these response tokens effectively, utilizing the input tokens during training. Given that all tokens are accessible at this stage — both from the prompt ("How are you?") and the manually annotated response ("I'm well") — we can directly feed into the system $x_1, x_2, x_3, y_1$, $y_2$ and $y3$. The expectation is that based on these inputs, the decoder will predict $y_1, y_2$, and $y_3$. The operational requirements here are minimal; there's no necessity for a distinct target output for the negative log-likelihood.
 
 As per the operational norms of the GPT library, the entire sequence — comprising both the input and the response — is fed into the decoder. This input isn't just physical; it's also conceptual, as the model might also be designed to predict the end-of-sentence token, thereby recognizing the full length of the sequence and the demarcation of the prefix.
@@ -87,7 +89,7 @@ We can succinctly compare this with how a standard transformer operates, one tha
  
 In our scenario, the input sequence, denoted as $x_1$ through $x_T$, is fed into the encoder, which operates on a fixed length. If the length of the actual prompt is less than this fixed length, padding tokens are used to fill the gap, ensuring uniformity. The encoder, then, doesn't directly generate any probability outputs; these are solely produced by the decoder.
 
-The two modules are connected through a large number of connections, collectively called cross attention. The input tokens are processed and transformed into internal states, which are then communicated to the decoder via the cross attention mechanism.
+The two modules are connected through a large number of connections, collectively called cross-attention. The input tokens are processed and transformed into internal states, which are then communicated to the decoder via the cross-attention mechanism.
 
 A beginning-of-sentence token is provided to the decoder as the first token in the input. This allows for the calculation of the probability of the first output token. During training, a reference token, 'y1', is used. In inference, a token is predicted from the probability distribution, typically selecting the token with the highest probability value. This selected token is then used as the input for predicting the next token, 'y2', and the process continues in this manner.
 
