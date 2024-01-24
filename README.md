@@ -5,6 +5,7 @@ This repository explains how a decoder-only transformer (GPT) work vs an encoder
 
 Conceptually, the decoder acts as a module that receives a sequence of input tokens, which can be denoted as  $(x_1, x_2, ..., x_t, ..., x_T$). Corresponding to this sequence, the decoder produces an output sequence of probability vectors $(p_1, p_2, ..., p_t, ..., p_T$).
 Each of these probability vectors is dimensionally aligned with the size of the  vocabulary we are employing. For instance, if the vocabulary incorporates 50,000 distinct words, then each vector, $p_i$, is a 50,000-dimensional vector where $i$ ranges from 1 to $T$. Each element within these vectors signifies the probability of a specific word from the vocabulary being the correct output at that position in the sequence.
+
 <img src="./images/decoder-1.PNG" alt="decoders" title="decoders" size="30%"/>
 
 Mathematically, the size of each probability vector is equivalent to the size of the vocabulary, $V$, leading to $p_i \in \mathbb{R}^V$. The elements of each probability vector are constrained such that each element, $p_{ij}$, satisfies $0 \leq p_{ij} \leq 1$, and the sum of all elements in a single probability vector sums to 1, adhering to the axioms of probability:
